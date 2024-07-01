@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movimentação de Foto com Rotação</title>
+    <style>
+        /* Estilos para o corpo da página */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Estilos para o contêiner da foto */
+        #container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Estilos para a foto */
+        #foto {
+            max-width: 50%;
+            max-height: 50%;
+            transition: transform 0.3s ease; /* Adiciona uma transição suave ao mover a foto */
+        }
+
+        /* Estilos para o texto informativo */
+        #texto-informativo {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <!-- Foto a ser movida -->
+        <img id="foto" src="/tmp/guest-x07bny/Downloads/download.png" alt="Foto">
+    </div>
+
+    <div id="texto-informativo">
+        Pressione 'A' para mover para a esquerda<br>
+        Pressione 'D' para mover para a direita<br>
+        Pressione 'W' para mover para cima<br>
+        Pressione 'S' para mover para baixo
+    </div>
+
+    <script>
+        // Seleciona a foto e define as variáveis de posição e rotação
+        var foto = document.getElementById("foto");
+        var posicaoHorizontal = 0;
+        var posicaoVertical = 0;
+        var angulo = 0;
+
+        // Event listener para detectar quando uma tecla é pressionada
+        document.addEventListener("keydown", function(event) {
+            // Se a tecla pressionada for 'A', move e gira para a esquerda
+            if (event.key === "a" || event.key === "A") {
+                posicaoHorizontal -= 10; // Ajuste a quantidade de pixels que a foto vai se mover para a esquerda
+                angulo -= 10; // Ajuste o ângulo de rotação
+            }
+            // Se a tecla pressionada for 'D', move e gira para a direita
+            else if (event.key === "d" || event.key === "D") {
+                posicaoHorizontal += 10; // Ajuste a quantidade de pixels que a foto vai se mover para a direita
+                angulo += 10; // Ajuste o ângulo de rotação
+            }
+            else if (event.key === "w" || event.key === "W") {
+                posicaoVertical -= 10;
+                angulo -= 10;
+            }   
+            else if (event.key === "s" || event.key === "S") {
+                posicaoVertical += 10;
+                angulo += 10;
+            }
+            // Aplica transformações de movimento e rotação à imagem
+            foto.style.transform = `translate(${posicaoHorizontal}px, ${posicaoVertical}px) rotate(${angulo}deg)`;
+
+            if(posicaoHorizontal > 600){
+                alert("Você ajudou o Obama a chegar na casa branca!")
+                posicaoHorizontal = 0;
+                posicaoVertical = 0;
+                angulo = 0;
+            }
+            if(posicaoVertical < -600){
+                alert("A casa branca é para o outro lado!")
+                posicaoHorizontal = 0;
+                posicaoVertical = 0;
+                angulo = 0;        
+            }
+            if(posicaoVertical < -500){
+                alert("Cima... Até demais.")
+                posicaoHorizontal = 0;
+                posicaoVertical = 0;
+                angulo = 0;
+            }
+            if(posicaoVertical > 500) {
+                alert("Baixo... Até demais.")
+                posicaoHorizontal = 0;
+                posicaoVertical = 0;
+                angulo = 0;
+            }
+        });
+    </script>
+</body>
+</html>
