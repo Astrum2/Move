@@ -46,9 +46,9 @@
 <body>
     <div id="container">
         <!-- Foto a ser movida -->
-        <img id="foto" src="/tmp/guest-2m4nca/Downloads/445-4453622_obama-sphere-png-transparent-png-removebg-preview.png" alt="Foto">
-        <img id="foto2" src="/tmp/guest-2m4nca/Downloads/61cNGxbZT3L._AC_UF1000_1000_QL80_-removebg-preview.png" alt="Foto2">
+        <img id="foto" src="https://imagepng.org/bola/bola" alt="Foto">
     </div>
+
     <div id="texto-informativo">
         Pressione 'A' para mover para a esquerda<br>
         Pressione 'D' para mover para a direita<br>
@@ -59,13 +59,9 @@
     <script>
         // Seleciona a foto e define as variáveis de posição e rotação
         var foto = document.getElementById("foto");
-        var foto2 = document.getElementById("foto2");
         var posicaoHorizontal = 0;
         var posicaoVertical = 0;
         var angulo = 0;
-        var posicaoHorizontal2 = 0;
-        var posicaoVertical2 = 0;
-        var angulo2 = 0;
 
         // Event listener para detectar quando uma tecla é pressionada
         document.addEventListener("keydown", function(event) {
@@ -79,58 +75,16 @@
                 posicaoHorizontal += 10; // Ajuste a quantidade de pixels que a foto vai se mover para a direita
                 angulo += 10; // Ajuste o ângulo de rotação
             }
-            else if (event.key === "w" || event.key === "W") {
-                posicaoVertical -= 10;
-                angulo -= 10;
-            }   
-            else if (event.key === "s" || event.key === "S") {
-                posicaoVertical += 10;
-                angulo += 10;
-            }
-            else if (event.key === "g" || event.key === "G") {
-                posicaoHorizontal2 -= 10; // Ajuste a quantidade de pixels que a foto vai se mover para a esquerda
-                angulo2 -= 10; // Ajuste o ângulo de rotação
-            }
-            // Se a tecla pressionada for 'D', move e gira para a direita
-            else if (event.key === "j" || event.key === "J") {
-                posicaoHorizontal2 += 10; // Ajuste a quantidade de pixels que a foto vai se mover para a direita
-                angulo2 += 10; // Ajuste o ângulo de rotação
-            }
-            else if (event.key === "y" || event.key === "Y") {
-                posicaoVertical2 -= 10;
-                angulo2 -= 10;
-            }   
-            else if (event.key === "h" || event.key === "H") {
-                posicaoVertical2 += 10;
-                angulo2 += 10;
-            }
             // Aplica transformações de movimento e rotação à imagem
             foto.style.transform = `translate(${posicaoHorizontal}px, ${posicaoVertical}px) rotate(${angulo}deg)`;
-            foto2.style.transform = `translate(${posicaoHorizontal2}px, ${posicaoVertical2}px) rotate(${angulo2}deg)`;
 
             if(posicaoHorizontal > 600){
-                alert("Você ajudou o Obama a chegar na casa branca!")
+                alert("gol da esquerda!")
                 posicaoHorizontal = 0;
-                posicaoVertical = 0;
-                angulo = 0;
             }
-            if(posicaoVertical < -600){
-                alert("A casa branca é para o outro lado!")
-                posicaoHorizontal = 0;
-                posicaoVertical = 0;
-                angulo = 0;        
-            }
-            if(posicaoVertical < -500){
-                alert("Cima... Até demais.")
-                posicaoHorizontal = 0;
-                posicaoVertical = 0;
-                angulo = 0;
-            }
-            if(posicaoVertical > 500) {
-                alert("Baixo... Até demais.")
-                posicaoHorizontal = 0;
-                posicaoVertical = 0;
-                angulo = 0;
+            if(posicaoHorizontal < -600){
+                alert("gol da direita!")
+                posicaoHorizontal = 0;        
             }
         });
     </script>
